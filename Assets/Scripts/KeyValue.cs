@@ -8,7 +8,13 @@ public class KeyValue : MonoBehaviour
 {
     void Start()
     {
-        string path = Path.Combine(Application.persistentDataPath, "SaveData", "settings.cfg");
+        string path = Path.Combine(Application.persistentDataPath, "SaveData");
+
+        if (!File.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+        path = Path.Combine(path, "settings.cfg");
 
         using (FileStream fs = File.Create(path))
         using (StreamWriter sw = new StreamWriter(fs))
@@ -19,6 +25,7 @@ public class KeyValue : MonoBehaviour
             sw.WriteLine("language=kr");
             sw.WriteLine("show_damage=true");
         }
+        Debug.Log($"파일 생성: {path}");
     }
     void Update()
     {
