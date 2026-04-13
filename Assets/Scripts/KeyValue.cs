@@ -1,8 +1,6 @@
 using System.IO;
 using UnityEngine;
-using static Unity.VisualScripting.Icons;
 using System.Collections.Generic;
-using Mono.Cecil;
 
 public class KeyValue : MonoBehaviour
 {
@@ -53,6 +51,8 @@ public class KeyValue : MonoBehaviour
                     sw.WriteLine($"{key}={dict[key]}");
                 }
             }
+            string text = File.ReadAllText(path);
+            Debug.Log(text);
         }
     }
 }
