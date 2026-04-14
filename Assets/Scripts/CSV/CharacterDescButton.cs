@@ -5,11 +5,11 @@ using TMPro;
 public class CharacterDescButton : MonoBehaviour
 {
     [SerializeField] private Image iconImage;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private TextMeshProUGUI desc;
-    [SerializeField] private TextMeshProUGUI hpLabel;
-    [SerializeField] private TextMeshProUGUI atkLabel;
-    [SerializeField] private TextMeshProUGUI defLabel;
+    [SerializeField] private Localization text;
+    [SerializeField] private Localization desc;
+    [SerializeField] private Localization hpLabel;
+    [SerializeField] private Localization atkLabel;
+    [SerializeField] private Localization defLabel;
     [SerializeField] private TextMeshProUGUI hp;
     [SerializeField] private TextMeshProUGUI atk;
     [SerializeField] private TextMeshProUGUI def;
@@ -17,8 +17,14 @@ public class CharacterDescButton : MonoBehaviour
     public void SetEmpty()
     {
         iconImage.sprite = null;
-        text.text = string.Empty;
-        desc.text = string.Empty;
+        text.id = string.Empty;
+        desc.id = string.Empty;
+        hpLabel.id = string.Empty;
+        atkLabel.id = string.Empty;
+        defLabel.id = string.Empty;
+        hp.text = string.Empty;
+        atk.text = string.Empty;
+        def.text = string.Empty;
     }
     private void OnEnable()
     {
@@ -40,12 +46,17 @@ public class CharacterDescButton : MonoBehaviour
     {
         iconImage.sprite = characterData.SpriteIcon;
         //text.text = characterData.StringName;
-        text.GetComponent<Localization>().id = characterData.Name;
+        text.id = characterData.Name;
+        text.OnChangedId();
         // desc.text = characterData.StringDesc;
-        desc.GetComponent<Localization>().id = characterData.Desc;
-        hpLabel.GetComponent<Localization>().id = "HP";
-        atkLabel.GetComponent<Localization>().id = "ATK";
-        defLabel.GetComponent<Localization>().id = "DEF";
+        desc.id = characterData.Desc;
+        desc.OnChangedId();
+        hpLabel.id = "HP";
+        hpLabel.OnChangedId();
+        atkLabel.id = "ATK";
+        atkLabel.OnChangedId();
+        defLabel.id = "DEF";
+        defLabel.OnChangedId();
         hp.text = $"{characterData.Health}";
         atk.text = $"{characterData.AttackPower}";
         def.text = $"{characterData.Defense}";
