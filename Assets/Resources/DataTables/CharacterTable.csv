@@ -1,0 +1,4 @@
+Id,Type,Name,Desc,AttackPower,Defense,Health,Icon
+Character1,Player,Character1Name,Character1Desc,10,10,100,Icon_Helmet01
+Character2,Enemy,Character2Name,Character2Desc,5,0,50,Icon_Skull01
+Character3,NPC,Character3Name,Character3Desc,0,0,0,Icon_Helmet02

@@ -2,7 +2,20 @@
 HELLO,안녕
 BYE,잘가
 YOU DIE,너 죽음
-WHY,왜?
-CALL,부름
-RUN,도망
-ATTACK,공격
+Item1Name,검
+Item2Name,방패
+Item3Name,활 
+Item4Name,물약 
+Item1Desc,이것은 검이다.
+Item2Desc,이것은 방패다.
+Item3Desc,이것은 활이다.
+Item4Desc,이것은 물약이다.
+Character1Name,플레이어
+Character2Name,스켈레톤
+Character3Name,기사
+Character1Desc,당신이 조종하는 캐릭터
+Character2Desc,쉽게 잡을 수 있는 몬스터
+Character3Desc,당신에게 퀘스트를 주는 NPC
+HP,체력
+ATK,공격력
+DEF,방어력

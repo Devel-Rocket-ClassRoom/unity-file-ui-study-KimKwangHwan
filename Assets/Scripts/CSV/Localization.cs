@@ -39,11 +39,11 @@ public class Localization : MonoBehaviour
         Variables.OnLanguageChanged -= OnChangedLanguage;
     }
 
-    private void OnChangedId()
+    public void OnChangedId()
     {
         text.text = DataTableManager.StringTable.Get(id);
     }
-    private void OnChangedLanguage()
+    public void OnChangedLanguage()
     {
         text.text = DataTableManager.StringTable.Get(id);
     }
@@ -52,6 +52,13 @@ public class Localization : MonoBehaviour
     {
         var stringTable = DataTableManager.GetStringTable(lang);
         text.text = stringTable.Get(id);
+    }
+#endif
+#if UNITY_EDITOR
+    [ContextMenu("ChangeLanguage")]
+    private void ChangeLanguage()
+    {
+        Variables.Language = language;
     }
 #endif
 }

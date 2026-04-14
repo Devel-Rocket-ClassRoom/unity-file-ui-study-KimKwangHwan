@@ -1,8 +1,21 @@
 ﻿Id,String
-HELLO,こんにちは
-BYE,またね
-YOU DIE,あなたのし
-WHY,なぜ?
-CALL,よぶ
-RUN,にげる
-ATTACK,こうげき
+HELLO,やあ
+BYE,じゃあな
+YOU DIE,あなたは死ぬ
+Item1Name,剣
+Item2Name,盾
+Item3Name,弓
+Item4Name,ポーション
+Item1Desc,これは剣だ。
+Item2Desc,これは盾だ。
+Item3Desc,これは弓だ。
+Item4Desc,これはポーションだ。
+Character1Name,プレイヤー
+Character2Name,スケルトン
+Character3Name,ナイト 
+Character1Desc,プレイヤーキャラクター
+Character2Desc,ざこ
+Character3Desc,クエストを依頼するNPC
+HP,ライフ 
+ATK,パワー
+DEF,ディフェンス
