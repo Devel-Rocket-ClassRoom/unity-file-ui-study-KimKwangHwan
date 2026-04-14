@@ -8,6 +8,18 @@ public class Localization : MonoBehaviour
     public Languages language;
     public TextMeshProUGUI text;
 
+    public string Id
+    {
+        get { return id; }
+        set
+        {
+            if (id == value)
+                return;
+            id = value;
+            OnChangedId();
+        }
+    }
+
     private void OnEnable()
     {
         if (Application.isPlaying)

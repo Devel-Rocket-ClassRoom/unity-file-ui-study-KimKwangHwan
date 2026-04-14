@@ -45,18 +45,11 @@ public class CharacterDescButton : MonoBehaviour
     private void ChangeId(CharacterData characterData)
     {
         iconImage.sprite = characterData.SpriteIcon;
-        //text.text = characterData.StringName;
-        text.id = characterData.Name;
-        text.OnChangedId();
-        // desc.text = characterData.StringDesc;
-        desc.id = characterData.Desc;
-        desc.OnChangedId();
-        hpLabel.id = "HP";
-        hpLabel.OnChangedId();
-        atkLabel.id = "ATK";
-        atkLabel.OnChangedId();
-        defLabel.id = "DEF";
-        defLabel.OnChangedId();
+        text.Id = characterData.Name;
+        desc.Id = characterData.Desc;
+        hpLabel.Id = "HP";
+        atkLabel.Id = "ATK";
+        defLabel.Id = "DEF";
         hp.text = $"{characterData.Health}";
         atk.text = $"{characterData.AttackPower}";
         def.text = $"{characterData.Defense}";
