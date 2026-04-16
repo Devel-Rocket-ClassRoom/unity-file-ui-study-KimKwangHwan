@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 // 1. CSV 파일 (ID / 이름 / 설명 / 공격력 / 방어력 ... / 초상화 or 아이콘 ...
 // 2. DataTable 상속

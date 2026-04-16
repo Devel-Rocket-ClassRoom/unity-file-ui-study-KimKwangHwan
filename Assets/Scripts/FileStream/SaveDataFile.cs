@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.IO;
 
-public class SaveData : MonoBehaviour
+public class SaveDataFile : MonoBehaviour
 {
     private int saveIndex = 1;
 

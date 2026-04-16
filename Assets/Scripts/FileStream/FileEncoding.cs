@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.IO;
 
-public class Encoding : MonoBehaviour
+public class FileEncoding: MonoBehaviour
 {
     string config;
     void Start()

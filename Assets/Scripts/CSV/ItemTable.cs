@@ -55,4 +55,16 @@ public class ItemTable : DataTable
         }
         return table[id];
     }
+
+    public List<string> GetItemIds()
+    {
+        List<string> idList = new List<string>();
+
+        foreach (string id in table.Keys)
+        {
+            idList.Add(id);
+        }
+
+        return idList;
+    }
 }
