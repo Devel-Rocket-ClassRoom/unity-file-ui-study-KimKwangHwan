@@ -19,6 +19,9 @@ public class GameOverWindow : GenericWindow
     private Coroutine coPrintStats;
     private string initText;
 
+    private float scoreDuration = 2f;
+    private float statDelay = 1f;
+
     private void Awake()
     {
         nextButton.onClick.AddListener(OnNext);
@@ -54,7 +57,7 @@ public class GameOverWindow : GenericWindow
         for (; i < length / 2; i++)
         {
             int value = Random.Range(10, 10000);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(statDelay);
             leftStartLabel.text += $"STAT {i}\n";
             leftStartValue.text += $"{value:D4}\n";
             total += value;
@@ -62,20 +65,20 @@ public class GameOverWindow : GenericWindow
         for (; i < length; i++)
         {
             int value = Random.Range(10, 10000);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(statDelay);
             rightStartLabel.text += $"STAT {i}\n";
             rightStartValue.text += $"{value:D4}\n";
             total += value;
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(statDelay);
 
         float elapsed = 0f;
         int current = 0;
 
-        while(elapsed < 3f)
+        while(elapsed < scoreDuration)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / 3f;
+            float t = elapsed / scoreDuration;
             current = Mathf.RoundToInt(Mathf.Lerp(0, total, t));
             scoreValue.text = $"{current:D9}";
             yield return null;

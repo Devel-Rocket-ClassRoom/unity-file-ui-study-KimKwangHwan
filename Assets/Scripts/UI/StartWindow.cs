@@ -39,7 +39,8 @@ public class StartWindow : GenericWindow
 
     public void OnNewGame()
     {
-        Debug.Log("New Game");
+        // Debug.Log("New Game");
+        windowManager.Open(2);
     }
 
     public void OnOption()
