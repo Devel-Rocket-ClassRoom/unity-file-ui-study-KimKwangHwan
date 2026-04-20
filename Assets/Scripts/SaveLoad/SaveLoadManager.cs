@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using SaveDataVC = SaveDataV3;
+using SaveDataVC = SaveDataV4;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -15,7 +15,7 @@ public static class SaveLoadManager
 
     private static string Ext => Mode == SaveMode.Text ? ".json" : ".dat";
 
-    public static int SaveDataVersion { get; } = 3;
+    public static int SaveDataVersion { get; } = 4;
 
     private static readonly string SaveDirectory = $"{Application.persistentDataPath}/Save"; 
 

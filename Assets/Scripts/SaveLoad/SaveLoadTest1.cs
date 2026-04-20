@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using SaveDataVC = SaveDataV3;
+using SaveDataVC = SaveDataV4;
 using Random = UnityEngine.Random;
 
 public class SaveLoadTest1 : MonoBehaviour
@@ -13,17 +13,18 @@ public class SaveLoadTest1 : MonoBehaviour
         SaveLoadManager.Data.Name = "TEST11132";
         SaveLoadManager.Data.Gold = 300000;
         List<string> ids = DataTableManager.ItemTable.GetItemIds();
-        List<string> saveItems = new List<string>();
+        List<SaveItemData> saveItems = new List<SaveItemData>();
         foreach (string id in ids)
         {
             float pb = Random.value;
-
+            
             if (pb > 0.5f)
             {
-                saveItems.Add(id);
+                SaveItemData saveItemData = new SaveItemData();
+                saveItemData.ItemData = DataTableManager.ItemTable.Get(id);
+                saveItems.Add(saveItemData);
             }
         }
-        Debug.Log($"Save Items : {string.Join(", ", saveItems)}");
         SaveLoadManager.Data.ItemList = saveItems;
         SaveLoadManager.Save(slot, saveMode);
     }
@@ -32,6 +33,11 @@ public class SaveLoadTest1 : MonoBehaviour
     {
         SaveLoadManager.Load(slot, saveMode);
 
-        Debug.Log($"Name : {SaveLoadManager.Data.Name} / Gold : {SaveLoadManager.Data.Gold} / ItemList : {string.Join(", ", SaveLoadManager.Data.ItemList)}");
+        Debug.Log($"Name : {SaveLoadManager.Data.Name} / Gold : {SaveLoadManager.Data.Gold}");
+
+        foreach (var saveItem in SaveLoadManager.Data.ItemList)
+        {
+            Debug.Log($"Item : {saveItem.ItemData.Name}");
+        }
     }
 }

@@ -19,3 +19,11 @@ Character3Desc,NPC that give quest to you
 HP,HP
 ATK,ATK
 DEF,DEF
+NAME,Name
+DESC,Desc
+TYPE,Type
+VALUE,Value
+COST,Cost
+WEAPON,Weapon
+EQUIP,Equip
+CONSUMABLE,Consumable

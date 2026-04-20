@@ -19,3 +19,11 @@ Character3Desc,당신에게 퀘스트를 주는 NPC
 HP,체력
 ATK,공격력
 DEF,방어력
+NAME,이름
+DESC,설명
+TYPE,타입
+VALUE,밸류
+COST,코스트
+WEAPON,무기
+EQUIP,장비
+CONSUMABLE,소모품

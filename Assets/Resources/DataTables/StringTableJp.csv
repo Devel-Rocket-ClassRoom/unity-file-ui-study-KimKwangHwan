@@ -19,3 +19,11 @@ Character3Desc,クエストを依頼するNPC
 HP,ライフ 
 ATK,パワー
 DEF,ディフェンス
+NAME,NameJP
+DESC,DescJP
+TYPE,TypeJP
+VALUE,ValueJP
+COST,CostJP
+WEAPON,WeaponJP
+EQUIP,EquipJP
+CONSUMABLE,ConsumableJP
