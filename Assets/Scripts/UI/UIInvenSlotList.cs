@@ -59,6 +59,9 @@ public class UIInvenSlotList : MonoBehaviour
     };
 
     public UIInvenSlot prefab;
+    public UIInvenSlot emptySlotPrefab;
+    private UIInvenSlot unequipSlot;
+
     public ScrollRect scrollRect;
 
     private List<UIInvenSlot> uiSlotList = new List<UIInvenSlot>();
@@ -143,6 +146,11 @@ public class UIInvenSlotList : MonoBehaviour
         itemInfo.SetActive(false);
         Sorting = SaveLoadManager.Data.invenSortingOption;
         Filtering = SaveLoadManager.Data.invenFilteringOption;
+
+        unequipSlot = Instantiate(emptySlotPrefab, scrollRect.content);
+        unequipSlot.SetEmpty();
+        unequipSlot.gameObject.SetActive(false);
+        unequipSlot.button.onClick.AddListener(OnUnequipSlotClick);
     }
 
     private void OnEnable()
@@ -209,6 +217,9 @@ public class UIInvenSlotList : MonoBehaviour
 
         selectedSlotIndex = -1;
         onUpdateSlot.Invoke();
+
+        unequipSlot.transform.SetAsLastSibling();
+        unequipSlot.gameObject.SetActive(currentMode == InvenMode.Equip);
     }
 
     public void AddRandomItem()
@@ -226,5 +237,15 @@ public class UIInvenSlotList : MonoBehaviour
 
         saveItemDataList.Remove(uiSlotList[selectedSlotIndex].SaveItemData);
         UpdateSlots();
+    }
+
+    private void OnUnequipSlotClick()
+    {
+        if (targetCharacter == null) return;
+
+        targetCharacter.EquipArmor = null;
+        targetCharacter.EquipWeapon = null;
+
+        characterInfo.SetSaveCharacterData(targetCharacter);
     }
 }
