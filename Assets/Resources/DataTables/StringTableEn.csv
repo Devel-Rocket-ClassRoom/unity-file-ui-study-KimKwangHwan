@@ -24,6 +24,16 @@ DESC,Desc
 TYPE,Type
 VALUE,Value
 COST,Cost
+NONE,None
 WEAPON,Weapon
 EQUIP,Equip
 CONSUMABLE,Consumable
+NONCONSUMABLE,Nonconsumable
+DATE_ASSCENDING,Date(Asscending)
+DATE_DESCENDING,Date(Descending)
+NAME_ASSCENDING,Name(Asscending)
+NAME_DESCENDING,Name(Descending)
+SAVE,Save
+LOAD,Load
+CREATE,Create Item
+REMOVE,Remove Item

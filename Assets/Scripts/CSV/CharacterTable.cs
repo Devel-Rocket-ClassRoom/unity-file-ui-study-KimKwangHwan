@@ -21,7 +21,7 @@ public class CharacterData
 
     public string StringName => DataTableManager.StringTable.Get(Name);
     public string StringDesc => DataTableManager.StringTable.Get(Desc);
-    public Sprite SpriteIcon => Resources.Load<Sprite>($"Icon/{Icon}");
+    public Sprite SpriteIcon => Resources.Load<Sprite>($"SIMPLE Avatars Icons/512X512/{Icon}");
     public override string ToString()
     {
         return $"{Id} / {Type} / {Name} / {Desc} / {AttackPower} / {Defense} / {Health} / {Icon}";
@@ -61,5 +61,17 @@ public class CharacterTable : DataTable
         }
 
         return table[id];
+    }
+
+    public List<string> GetCharIds()
+    {
+        List<string> idList = new List<string>();
+
+        foreach (string id in table.Keys)
+        {
+            idList.Add(id);
+        }
+
+        return idList;
     }
 }

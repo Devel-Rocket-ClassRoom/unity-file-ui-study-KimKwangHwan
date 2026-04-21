@@ -68,6 +68,8 @@ public class SaveDataV3 : SaveData
             itemData.ItemData = DataTableManager.ItemTable.Get(id);
             data.ItemList.Add(itemData);
         }
+        data.sortingOption = UIInvenSlotList.SortingOptions.CreationTimeAsscending;
+        data.filteringOption = UIInvenSlotList.FilteringOptions.None;
         return data;
     }
 }
@@ -76,6 +78,10 @@ public class SaveDataV3 : SaveData
 public class SaveDataV4 : SaveDataV2
 {
     public List<SaveItemData> ItemList = new List<SaveItemData>();
+    public List<SaveCharacterData> CharList = new List<SaveCharacterData>();
+
+    public UIInvenSlotList.SortingOptions sortingOption;
+    public UIInvenSlotList.FilteringOptions filteringOption;
     public SaveDataV4()
     {
         Version= 4;

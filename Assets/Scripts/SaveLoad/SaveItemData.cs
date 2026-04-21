@@ -26,4 +26,9 @@ public class SaveItemData
         InstanceId = Guid.NewGuid();
         CreationTime = DateTime.Now;
     }
+
+    public override string ToString()
+    {
+        return $"{ItemData.StringName} {InstanceId} {CreationTime}";
+    }
 }

@@ -2,3 +2,7 @@ Id,Type,Name,Desc,AttackPower,Defense,Health,Icon
 Character1,Player,Character1Name,Character1Desc,10,10,100,Icon_Helmet01
 Character2,Enemy,Character2Name,Character2Desc,5,0,50,Icon_Skull01
 Character3,NPC,Character3Name,Character3Desc,0,0,0,Icon_Helmet02
+Elf1,Player,Elf1Name,Elf1Desc,10,10,100,Elf_1
+Dwarf1,Player,Dwarf1Name,Dwarf1Desc,15,20,200,Dwarf_1
+Dog1,NPC,Dog1Name,Dog1Desc,0,0,0,Dog_1
+Dragon1,Enemy,Dragon1Name,Dragon1Desc,100,50,100000,Dragon_1

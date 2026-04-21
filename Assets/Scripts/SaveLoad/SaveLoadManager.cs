@@ -11,7 +11,7 @@ public static class SaveLoadManager
         Encrypted // (.dat)
     }
 
-    public static SaveMode Mode { get; set; } = SaveMode.Encrypted;
+    public static SaveMode Mode { get; set; } = SaveMode.Text;
 
     private static string Ext => Mode == SaveMode.Text ? ".json" : ".dat";
 
@@ -84,6 +84,14 @@ public static class SaveLoadManager
         }
     }
 
+    static SaveLoadManager()
+    {
+        if (!Load())
+        {
+            Debug.LogError("세이브 파일 로드 실패");
+        }
+    }
+
     public static bool Load(int slot = 0)
     {
         return Load(slot, Mode);
@@ -99,7 +107,7 @@ public static class SaveLoadManager
 
         if (!File.Exists(path))
         {
-            return false;
+            return Save();
         }
         try
         {
