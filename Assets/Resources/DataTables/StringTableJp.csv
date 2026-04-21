@@ -35,5 +35,7 @@ NAME_ASSCENDING,ネーム（アセンディング）
 NAME_DESCENDING,ネーム（ディセンディング
 SAVE,セーブ
 LOAD,ロード
-CREATE,クリエイトアイテム
-REMOVE,リムーブアイテム
+ITEM_CREATE,クリエイトアイテム
+ITEM_REMOVE,リムーブアイテム
+EQUIPPING,イクイップ
+NONEQUIPPING,ノーンイクイップ

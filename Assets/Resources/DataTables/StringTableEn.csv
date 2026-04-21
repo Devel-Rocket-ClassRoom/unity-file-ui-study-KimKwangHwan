@@ -35,5 +35,9 @@ NAME_ASSCENDING,Name(Asscending)
 NAME_DESCENDING,Name(Descending)
 SAVE,Save
 LOAD,Load
-CREATE,Create Item
-REMOVE,Remove Item
+ITEM_CREATE,Create Item
+ITEM_REMOVE,Remove Item
+CHAR_CREATE,Craete Char
+CHAR_REMOVE,Remove Char
+EQUIPPING,Equipping
+NONEQUIPPING,NonEquipping

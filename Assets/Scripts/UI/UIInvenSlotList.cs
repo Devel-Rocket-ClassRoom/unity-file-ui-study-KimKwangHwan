@@ -6,7 +6,7 @@ using System.Linq;
 
 public class UIInvenSlotList : MonoBehaviour
 {
-    public enum SortingOptions // 가격, 코스트 추가
+    public enum InvenSortingOptions // 가격, 코스트 추가
     {
         CreationTimeAsscending,
         CreationTimeDescending,
@@ -18,7 +18,7 @@ public class UIInvenSlotList : MonoBehaviour
         ValueDescending,
     }
 
-    public enum FilteringOptions // NonConsumable 추가
+    public enum InvenFilteringOptions // NonConsumable 추가
     {
         None,
         Weapon,
@@ -26,6 +26,16 @@ public class UIInvenSlotList : MonoBehaviour
         Consumable,
         NonConsumable
     }
+
+    public enum InvenMode
+    {
+        Default,
+        Equip,
+    }
+
+    public InvenMode currentMode = InvenMode.Default;
+    public UICharacterInfo characterInfo;
+    public SaveCharacterData targetCharacter;
 
     public readonly System.Comparison<SaveItemData>[] comparisons =
     {
@@ -56,13 +66,13 @@ public class UIInvenSlotList : MonoBehaviour
 
     private List<SaveItemData> saveItemDataList = new List<SaveItemData>();
 
-    private SortingOptions sorting = SortingOptions.CreationTimeAsscending;
-    private FilteringOptions filtering = FilteringOptions.None;
+    private InvenSortingOptions sorting = InvenSortingOptions.CreationTimeAsscending;
+    private InvenFilteringOptions filtering = InvenFilteringOptions.None;
 
     public GameObject itemInfo;
     private bool onMenu = false;
 
-    public SortingOptions Sorting
+    public InvenSortingOptions Sorting
     {
         get => sorting;
         set
@@ -70,14 +80,14 @@ public class UIInvenSlotList : MonoBehaviour
             if (sorting != value)
             {
                 sorting = value;
-                SaveLoadManager.Data.sortingOption = sorting;
+                SaveLoadManager.Data.invenSortingOption = sorting;
                 UpdateSlots();
             }
             
         }
     }
 
-    public FilteringOptions Filtering
+    public InvenFilteringOptions Filtering
     {
         get => filtering;
         set
@@ -85,7 +95,7 @@ public class UIInvenSlotList : MonoBehaviour
             if (filtering != value)
             {
                 filtering = value;
-                SaveLoadManager.Data.filteringOption = filtering;
+                SaveLoadManager.Data.invenFilteringOption = filtering;
                 UpdateSlots();
             }
         }
@@ -98,16 +108,32 @@ public class UIInvenSlotList : MonoBehaviour
 
     private void OnSelectSlot(SaveItemData saveItemData, int oldIndex, int newIndex)
     {
-        if (oldIndex != newIndex || !onMenu)
+        if (currentMode == InvenMode.Default)
         {
-            itemInfo.GetComponent<UIItemInfo>().SetSaveItemData(saveItemData);
-            itemInfo.SetActive(true);
-            onMenu = true;
+            if (oldIndex != newIndex || !onMenu)
+            {
+                itemInfo.GetComponent<UIItemInfo>().SetSaveItemData(saveItemData);
+                itemInfo.SetActive(true);
+                onMenu = true;
+            }
+            else if (oldIndex == newIndex)
+            {
+                itemInfo.SetActive(false);
+                onMenu = false;
+            }
         }
-        else if (oldIndex == newIndex)
+        else if (currentMode == InvenMode.Equip)
         {
-            itemInfo.SetActive(false);
-            onMenu = false;
+            if (saveItemData.ItemData.Type == ItemTypes.Equip)
+            {
+                targetCharacter.EquipArmor = saveItemData.ItemData;
+                characterInfo.SetSaveCharacterData(targetCharacter);
+            }
+            else if (saveItemData.ItemData.Type == ItemTypes.Weapon)
+            {
+                targetCharacter.EquipWeapon = saveItemData.ItemData;
+                characterInfo.SetSaveCharacterData(targetCharacter);
+            }
         }
     }
 
@@ -115,14 +141,14 @@ public class UIInvenSlotList : MonoBehaviour
     {
         onSelectSlot.AddListener(OnSelectSlot);
         itemInfo.SetActive(false);
-        Sorting = SaveLoadManager.Data.sortingOption;
-        Filtering = SaveLoadManager.Data.filteringOption;
+        Sorting = SaveLoadManager.Data.invenSortingOption;
+        Filtering = SaveLoadManager.Data.invenFilteringOption;
     }
 
     private void OnEnable()
     {
         // TEST
-        // SetSaveItemDataList(SaveLoadManager.Data.ItemList);
+        SetSaveItemDataList(SaveLoadManager.Data.ItemList);
     }
 
     private void OnDisable()

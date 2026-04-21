@@ -47,8 +47,12 @@ VALUE_ASSCENDING,가치(오름차순)
 VALUE_DESCENDING,가치(내림차순)
 SAVE,저장
 LOAD,불러오기
-CREATE,아이템 생성
-REMOVE,아이템 삭제
+ITEM_CREATE,아이템 생성
+ITEM_REMOVE,아이템 삭제
+CHAR_CREATE,캐릭터 생성
+CHAR_REMOVE,캐릭터 삭제
 PLAYER,플레이어
 ENEMY,적
 NPC,NPC
+EQUIPPING,장비 착용
+NONEQUIPPING,장미 미착용

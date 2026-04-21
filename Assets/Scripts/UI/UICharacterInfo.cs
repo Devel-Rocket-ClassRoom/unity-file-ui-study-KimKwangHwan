@@ -10,12 +10,23 @@ public class UICharacterInfo : MonoBehaviour
     public Image imageEquip;
     public Image imageWeapon;
 
+    private bool onMenu = false;
+
+    public UIInvenSlotList invenSlotList;
+
     public TextMeshProUGUI textName;
     public TextMeshProUGUI textDescription;
     public TextMeshProUGUI textType;
     public TextMeshProUGUI textHealth;
     public TextMeshProUGUI textAttackPower;
     public TextMeshProUGUI textDefense;
+
+    private SaveCharacterData currentCharacter;
+
+    private void Awake()
+    {
+        invenSlotList.gameObject.SetActive(false);
+    }
 
     public void SetEmpty()
     {
@@ -31,9 +42,12 @@ public class UICharacterInfo : MonoBehaviour
     public void SetSaveCharacterData(SaveCharacterData saveCharData)
     {
         var st = DataTableManager.StringTable;
-        CharacterData data = saveCharData.CharacterData;
-
+        currentCharacter = saveCharData;
+        CharacterData data = currentCharacter.CharacterData;
         imageIcon.sprite = data.SpriteIcon;
+
+        imageEquip.sprite = currentCharacter.EquipArmor != null ? currentCharacter.EquipArmor.SpriteIcon : null;
+        imageWeapon.sprite = currentCharacter.EquipWeapon != null ? currentCharacter.EquipWeapon.SpriteIcon : null;
 
         textName.text = string.Format(FormatCommon, st.Get("NAME"), data.StringName);
         textDescription.text = string.Format(FormatCommon, st.Get("DESC"), data.StringDesc);
@@ -42,7 +56,23 @@ public class UICharacterInfo : MonoBehaviour
         textType.text = string.Format(FormatCommon, st.Get("TYPE"), st.Get(typeId));
 
         textHealth.text = string.Format(FormatCommon, st.Get("HP"), data.Health);
-        textAttackPower.text = string.Format(FormatCommon, st.Get("ATK"), data.AttackPower);
-        textDefense.text = string.Format(FormatCommon, st.Get("DEF"), data.Defense);
+        textAttackPower.text = string.Format(FormatCommon, st.Get("ATK"), data.AttackPower + (currentCharacter.EquipWeapon?.AttackPower ?? 0));
+        textDefense.text = string.Format(FormatCommon, st.Get("DEF"), data.Defense + (currentCharacter.EquipArmor?.Defense ?? 0));
+    }
+
+    public void OnEquipSlotClick()
+    {
+        if (!onMenu)
+        {
+            invenSlotList.gameObject.SetActive(true);
+            invenSlotList.targetCharacter = currentCharacter;
+            onMenu = true;
+        }
+        else if (onMenu)
+        {
+            invenSlotList.gameObject.SetActive(false);
+            invenSlotList.targetCharacter = null;
+            onMenu = false;
+        }
     }
 }

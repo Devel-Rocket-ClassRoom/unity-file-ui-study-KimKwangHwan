@@ -5,6 +5,7 @@ public class CharacterDataConverter : JsonConverter<CharacterData>
 {
     public override CharacterData ReadJson(JsonReader reader, Type objectType, CharacterData existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
+        if (reader.TokenType == JsonToken.Null) return null;
         string id = reader.Value as string;
         return DataTableManager.CharacterTable.Get(id);
     }

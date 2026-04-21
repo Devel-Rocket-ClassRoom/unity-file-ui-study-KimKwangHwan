@@ -16,35 +16,7 @@ public class UIPanelInventory : MonoBehaviour
 
     private void OnEnable()
     {
-        //uiInvenSlotList.SetSaveItemDataList(SaveLoadManager.Data.ItemList);
         OnLoad();
-
-        //sorting.options.Clear();
-        //filtering.options.Clear();
-
-        //string[] sortingOptions =
-        //{
-        //    DataTableManager.StringTable.Get("DATE_ASSCENDING"),
-        //    DataTableManager.StringTable.Get("DATE_DESCENDING"),
-        //    DataTableManager.StringTable.Get("NAME_ASSCENDING"),
-        //    DataTableManager.StringTable.Get("NAME_DESCENDING"),
-        //    DataTableManager.StringTable.Get("COST_ASSCENDING"),
-        //    DataTableManager.StringTable.Get("COST_DESCENDING"),
-        //    DataTableManager.StringTable.Get("VALUE_ASSCENDING"),
-        //    DataTableManager.StringTable.Get("VALUE_DESCENDING"),
-        //};
-
-        //string[] filteringOptions =
-        //{
-        //    DataTableManager.StringTable.Get("NONE"),
-        //    DataTableManager.StringTable.Get("WEAPON"),
-        //    DataTableManager.StringTable.Get("EQUIP"),
-        //    DataTableManager.StringTable.Get("CONSUMABLE"),
-        //    DataTableManager.StringTable.Get("NONCONSUMABLE"),
-        //};
-
-        //sorting.AddOptions(sortingOptions.ToList());
-        //filtering.AddOptions(filteringOptions.ToList());
     }
 
     private void Start()
@@ -55,12 +27,12 @@ public class UIPanelInventory : MonoBehaviour
 
     public void OnChangeSorting(int index)
     {
-        uiInvenSlotList.Sorting = (UIInvenSlotList.SortingOptions)index;
+        uiInvenSlotList.Sorting = (UIInvenSlotList.InvenSortingOptions)index;
     }
 
     public void OnChangeFiltering(int index)
     {
-        uiInvenSlotList.Filtering = (UIInvenSlotList.FilteringOptions)index;
+        uiInvenSlotList.Filtering = (UIInvenSlotList.InvenFilteringOptions)index;
     }
 
     public void OnSave()

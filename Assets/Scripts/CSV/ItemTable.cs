@@ -9,6 +9,8 @@ public class ItemData
     public string Desc { get; set; }
     public int Value { get; set; }
     public int Cost { get; set; }
+    public int AttackPower { get; set; }
+    public int Defense { get; set; }
     public string Icon { get; set; }
     public string StringName => DataTableManager.StringTable.Get(Name);
     public string StringDesc => DataTableManager.StringTable.Get(Desc);

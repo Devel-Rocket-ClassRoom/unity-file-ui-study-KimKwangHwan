@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f43d9475df02d54d829089c45a4a075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Localization
-  id: REMOVE
+  id: ITEM_REMOVE
   language: 0
   text: {fileID: 278493827}
 --- !u!1 &303244436
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f43d9475df02d54d829089c45a4a075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Localization
-  id: CREATE
+  id: ITEM_CREATE
   language: 0
   text: {fileID: 604712493}
 --- !u!1 &615793039

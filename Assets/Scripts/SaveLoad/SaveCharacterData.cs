@@ -8,14 +8,14 @@ public class SaveCharacterData
 {
     public Guid InstanceId { get; set; }
 
-    [JsonConverter(typeof(CharacterData))]
+    [JsonConverter(typeof(CharacterDataConverter))]
     public CharacterData CharacterData { get; set; }
 
     public DateTime CreationTime { get; set; }
 
-    [JsonConverter(typeof(ItemData))]
+    [JsonConverter(typeof(ItemDataConverter))]
     public ItemData EquipArmor { get; set; }
-    [JsonConverter(typeof(ItemData))]
+    [JsonConverter(typeof(ItemDataConverter))]
     public ItemData EquipWeapon { get; set; }
 
     public static SaveCharacterData GetRandomCharacter()
