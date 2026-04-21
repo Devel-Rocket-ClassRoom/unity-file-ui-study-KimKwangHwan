@@ -3385,6 +3385,10 @@ PrefabInstance:
       propertyPath: characterInfo
       value: 
       objectReference: {fileID: 1416510057}
+    - target: {fileID: 218604450931678081, guid: f298cab3cb306554e898c1ebf5cf608f, type: 3}
+      propertyPath: emptySlotPrefab
+      value: 
+      objectReference: {fileID: 67460677431886639, guid: 4b3fc865b51a5744fbcf069cb17f5ace, type: 3}
     - target: {fileID: 1087020382079866996, guid: f298cab3cb306554e898c1ebf5cf608f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
