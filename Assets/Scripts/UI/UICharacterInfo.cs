@@ -46,8 +46,8 @@ public class UICharacterInfo : MonoBehaviour
         CharacterData data = currentCharacter.CharacterData;
         imageIcon.sprite = data.SpriteIcon;
 
-        imageEquip.sprite = currentCharacter.EquipArmor != null ? currentCharacter.EquipArmor.SpriteIcon : null;
-        imageWeapon.sprite = currentCharacter.EquipWeapon != null ? currentCharacter.EquipWeapon.SpriteIcon : null;
+        imageEquip.sprite = currentCharacter.EquipArmor != null ? currentCharacter.EquipArmor?.ItemData.SpriteIcon : null;
+        imageWeapon.sprite = currentCharacter.EquipWeapon != null ? currentCharacter.EquipWeapon?.ItemData.SpriteIcon : null;
 
         textName.text = string.Format(FormatCommon, st.Get("NAME"), data.StringName);
         textDescription.text = string.Format(FormatCommon, st.Get("DESC"), data.StringDesc);
@@ -55,17 +55,19 @@ public class UICharacterInfo : MonoBehaviour
         string typeId = data.Type.ToString().ToUpper();
         textType.text = string.Format(FormatCommon, st.Get("TYPE"), st.Get(typeId));
 
-        textHealth.text = string.Format(FormatCommon, st.Get("HP"), data.Health);
-        textAttackPower.text = string.Format(FormatCommon, st.Get("ATK"), data.AttackPower + (currentCharacter.EquipWeapon?.AttackPower ?? 0));
-        textDefense.text = string.Format(FormatCommon, st.Get("DEF"), data.Defense + (currentCharacter.EquipArmor?.Defense ?? 0));
+        textHealth.text = string.Format(FormatCommon, st.Get("HP"), data.Health + (currentCharacter.EquipWeapon?.ItemData.Health ?? 0) + (currentCharacter.EquipArmor?.ItemData.Health ?? 0));
+        textAttackPower.text = string.Format(FormatCommon, st.Get("ATK"), data.AttackPower + (currentCharacter.EquipWeapon?.ItemData.AttackPower ?? 0) + (currentCharacter.EquipArmor?.ItemData.AttackPower ?? 0));
+        textDefense.text = string.Format(FormatCommon, st.Get("DEF"), data.Defense + (currentCharacter.EquipWeapon?.ItemData.Defense ?? 0) + (currentCharacter.EquipArmor?.ItemData.Defense ?? 0));
     }
 
-    public void OnEquipSlotClick()
+    public void OnEquipSlotClick(int type)
     {
-        if (!onMenu)
+        if (!onMenu || invenSlotList.selectItemType != (ItemTypes)type)
         {
-            invenSlotList.gameObject.SetActive(true);
+            invenSlotList.selectItemType = (ItemTypes)type;
             invenSlotList.targetCharacter = currentCharacter;
+            invenSlotList.gameObject.SetActive(false);
+            invenSlotList.gameObject.SetActive(true);
             onMenu = true;
         }
         else if (onMenu)

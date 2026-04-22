@@ -22,7 +22,7 @@ public class UIInvenSlotList : MonoBehaviour
     {
         None,
         Weapon,
-        Equip,
+        Armor,
         Consumable,
         NonConsumable
     }
@@ -36,6 +36,7 @@ public class UIInvenSlotList : MonoBehaviour
     public InvenMode currentMode = InvenMode.Default;
     public UICharacterInfo characterInfo;
     public SaveCharacterData targetCharacter;
+    public ItemTypes selectItemType;
 
     public readonly System.Comparison<SaveItemData>[] comparisons =
     {
@@ -53,7 +54,7 @@ public class UIInvenSlotList : MonoBehaviour
     {
         (x) => true,
         (x) => x.ItemData.Type == ItemTypes.Weapon,
-        (x) => x.ItemData.Type == ItemTypes.Equip,
+        (x) => x.ItemData.Type == ItemTypes.Armor,
         (x) => x.ItemData.Type == ItemTypes.Consumable,
         (x) => x.ItemData.Type != ItemTypes.Consumable,
     };
@@ -127,16 +128,17 @@ public class UIInvenSlotList : MonoBehaviour
         }
         else if (currentMode == InvenMode.Equip)
         {
-            if (saveItemData.ItemData.Type == ItemTypes.Equip)
+            if (saveItemData.ItemData.Type == ItemTypes.Armor)
             {
-                targetCharacter.EquipArmor = saveItemData.ItemData;
+                targetCharacter.EquipArmor = saveItemData;
                 characterInfo.SetSaveCharacterData(targetCharacter);
             }
             else if (saveItemData.ItemData.Type == ItemTypes.Weapon)
             {
-                targetCharacter.EquipWeapon = saveItemData.ItemData;
+                targetCharacter.EquipWeapon = saveItemData;
                 characterInfo.SetSaveCharacterData(targetCharacter);
             }
+            UpdateSlots();
         }
     }
 
@@ -157,6 +159,17 @@ public class UIInvenSlotList : MonoBehaviour
     {
         // TEST
         SetSaveItemDataList(SaveLoadManager.Data.ItemList);
+        if (currentMode == InvenMode.Equip)
+        {
+            if (selectItemType == ItemTypes.Armor)
+            {
+                Filtering = InvenFilteringOptions.Armor;
+            }
+            else if (selectItemType == ItemTypes.Weapon)
+            {
+                Filtering = InvenFilteringOptions.Weapon;
+            }
+        }
     }
 
     private void OnDisable()
@@ -207,6 +220,15 @@ public class UIInvenSlotList : MonoBehaviour
             {
                 uiSlotList[i].gameObject.SetActive(true);
                 uiSlotList[i].SetItem(list[i]);
+                if (currentMode == InvenMode.Equip)
+                {
+                    bool equipped = IsEquippedByOther(list[i]);
+                    uiSlotList[i].SetEquipped(equipped);
+                }
+                else
+                {
+                    uiSlotList[i].SetEquipped(false);
+                }
             }
             else
             {
@@ -218,10 +240,25 @@ public class UIInvenSlotList : MonoBehaviour
         selectedSlotIndex = -1;
         onUpdateSlot.Invoke();
 
-        unequipSlot.transform.SetAsLastSibling();
-        unequipSlot.gameObject.SetActive(currentMode == InvenMode.Equip);
+        if (unequipSlot != null)
+        {
+            unequipSlot.transform.SetAsLastSibling();
+            unequipSlot.gameObject.SetActive(currentMode == InvenMode.Equip);
+        }
     }
+    private bool IsEquippedByOther(SaveItemData saveItemData)
+    {
+        var allCharacters = SaveLoadManager.Data.CharList;
 
+        foreach (var character in allCharacters)
+        {
+            if (character == targetCharacter) continue;
+
+            if (character.EquipWeapon?.InstanceId == saveItemData.InstanceId) return true;
+            if (character.EquipArmor?.InstanceId == saveItemData.InstanceId) return true;
+        }
+        return false;
+    }
     public void AddRandomItem()
     {
         saveItemDataList.Add(SaveItemData.GetRandomItem());
@@ -242,10 +279,15 @@ public class UIInvenSlotList : MonoBehaviour
     private void OnUnequipSlotClick()
     {
         if (targetCharacter == null) return;
-
-        targetCharacter.EquipArmor = null;
-        targetCharacter.EquipWeapon = null;
-
+        if (selectItemType == ItemTypes.Armor)
+        {
+            targetCharacter.EquipArmor = null;
+        }
+        if (selectItemType == ItemTypes.Weapon)
+        {
+            targetCharacter.EquipWeapon = null;
+        }
+        UpdateSlots();
         characterInfo.SetSaveCharacterData(targetCharacter);
     }
 }

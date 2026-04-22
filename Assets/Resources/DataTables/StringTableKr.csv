@@ -16,6 +16,15 @@ Character3Name,기사
 Character1Desc,당신이 조종하는 캐릭터
 Character2Desc,쉽게 잡을 수 있는 몬스터
 Character3Desc,당신에게 퀘스트를 주는 NPC
+ARMOR_GOLD_NAME,금갑옷
+ARMOR_IRON_NAME,철갑옷
+ARMOR_SILVER_NAME,은갑옷
+SWORD_GOLD_NAME,금검
+SWORD_IRON_NAME,철검
+SWORD_SILVER_NAME,은검
+GLOVES_GOLD_NAME,금장갑
+GLOVES_IRON_NAME,철장갑
+GLOVES_SILVER_NAME,은장갑
 Elf1Name,엘프 전사
 Dwarf1Name,드워프 척후병
 Dog1Name,도베르만

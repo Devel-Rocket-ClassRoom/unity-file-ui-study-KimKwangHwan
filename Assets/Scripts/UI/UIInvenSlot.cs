@@ -24,4 +24,10 @@ public class UIInvenSlot : MonoBehaviour
         imageIcon.sprite = SaveItemData.ItemData.SpriteIcon;
         textName.text = SaveItemData.ItemData.StringName;
     }
+
+    public void SetEquipped(bool isEquipped)
+    {
+        button.interactable = !isEquipped;
+        GetComponent<Image>().color = isEquipped ? Color.gray : Color.white;
+    }
 }

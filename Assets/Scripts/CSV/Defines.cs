@@ -7,14 +7,15 @@ public enum Languages
 public enum ItemTypes
 {
     Weapon,
-    Equip,
+    Armor,
     Consumable
 }
 public enum CharacterTypes
 {
-    Player,
-    Enemy,
-    NPC
+    Dealer,
+    Bruiser,
+    Supporter,
+    Summon
 }
 
 

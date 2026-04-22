@@ -13,16 +13,14 @@ public class SaveCharacterData
 
     public DateTime CreationTime { get; set; }
 
-    [JsonConverter(typeof(ItemDataConverter))]
-    public ItemData EquipArmor { get; set; }
-    [JsonConverter(typeof(ItemDataConverter))]
-    public ItemData EquipWeapon { get; set; }
+    public SaveItemData EquipArmor { get; set; }
+    public SaveItemData EquipWeapon { get; set; }
 
     public static SaveCharacterData GetRandomCharacter()
     {
         SaveCharacterData newChar = new SaveCharacterData();
         List<string> charIds = DataTableManager.CharacterTable.GetCharIds();
-        newChar.CharacterData = DataTableManager.CharacterTable.Get(charIds[Random.Range(3, charIds.Count)]);
+        newChar.CharacterData = DataTableManager.CharacterTable.Get(charIds[Random.Range(0, charIds.Count)]);
         UnityEngine.Debug.Log(newChar.CharacterData.StringName);
         return newChar;
     }
